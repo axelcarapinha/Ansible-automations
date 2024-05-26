@@ -1,0 +1,76 @@
+---
+# Prepare the servers to be accessed by Ansible for further configurations
+
+- hosts: all
+  become: true
+  pre_tasks: # Ensures a start with packages up to date
+
+  # This avoids the need of upadting the cache before every other task
+  - name: install updates (CentOs)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    changed_when: false # consider NOT a change, a bit cleaner output
+    when: ansible_distribution == "CentOs"
+
+  - name: install updates (Ubuntu) # in case I end up using Ubuntu servers
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install basic packages (CentOs)
+    tags: start
+    package:
+      name:
+        - bash-completion
+        - bind-utils
+        - curl
+        - epel-release
+        - firewalld
+        - git
+        - htop
+        - lsof
+        - nano
+        - net-tools
+        - nmap
+        - rsync
+        - sysstat
+        - tcpdump
+        - telnet
+        - tmux
+        - tree
+        - unzip
+        - vim
+        - wget
+        - yum-utils
+      state: latest
+      update_cache: yes
+
+  - name: create ansible user (hermes)
+    tags: always
+    user:
+      name: hermes
+      groups: root
+
+  - name: add ssh key for hermes
+    tags: always
+    authorized_key:
+      user: hermes
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKjEtWmm5F6fCRsdGWDM8ZQP51OYj07zLO7XGqZBLyJV ansible"
+
+  - name: add sudoers file for hermes
+    tags: always
+    copy:
+      src: sudoer_hermes
+      dest: /etc/sudoers.d/hermes
+      owner: root
+      group: root
+      mode: 0440
