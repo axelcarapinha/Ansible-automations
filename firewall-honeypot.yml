@@ -1,8 +1,0 @@
-
-- name: setup endlessh
-  hosts: all
-  become: yes  
-  tasks:
-
-
-  

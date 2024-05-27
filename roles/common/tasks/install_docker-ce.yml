@@ -39,7 +39,7 @@
     baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
     gpgcheck: yes
     enabled: yes # allows the system to use the repo for package installation and updates
-    gpgkey: https://download.docker.com/linux/centos/gpg.asc
+    gpgkey: https://download.docker.com/linux/centos/gpg
   when: ansible_distribution == "CentOS"
 
 #TODO it works, but the changes affect the docker engine. Need to solve.
