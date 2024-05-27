@@ -1,21 +1,16 @@
 ---
-# Installs and stars the Docker Engine 
+# Install and start the Docker (CE) Engine 
 # on a CentOS (version 7) computer
 
 - hosts: all
   become: true
   tasks:
 
-  - name: stop service - Docker CE (centOS)
-    tags: start, docker
-    service:
-      name: docker
-      state: stopped
-    when: ansible_distribution == "CentOS" # it's NOT "CentOs"
-
   # Does NOT remove the /var/lib/docker, where containers and networks may be
   - name: uninstall old versions - Docker CE (CentOS)
-    tags: start, docker
+    tags: 
+      - always
+      - docker
     yum:
       name:
         - docker
@@ -30,13 +25,18 @@
     when: ansible_distribution == "CentOS"
 
   - name: install prerequisites - Docker CE (CentOS)
-    tags: start, docker
+    tags: 
+      - always
+      - docker
     yum:
       name: yum-utils 
       state: present
     when: ansible_distribution == "CentOS"
 
-  - name: Add Docker CE repository (CentOS)
+  - name: add repository - Docker CE (CentOS)
+    tags: 
+      - always
+      - docker
     yum_repository:
       name: docker-ce
       description: Docker CE Stable - $basearch # basearch avoids specifying the architectures
@@ -70,7 +70,9 @@
     # image_name
 
   - name: install the latest version - Docker CE (CentOS)
-    tags: start, docker
+    tags: 
+      - always
+      - docker
     yum:
       name:
         - docker-ce
@@ -82,11 +84,13 @@
     when: ansible_distribution == "CentOS"
 
   - name: start service - Docker CE (CentOS)
-    tags: start, docker
+    tags: 
+      - always
+      - docker
     service:
       name: docker
       state: started
       enabled: yes
     when: ansible_distribution == "CentOS"
 
-  # Consider running `sudo docker run hello-world` to thoroughly test the installation
+# Consider running `sudo docker run hello-world` to thoroughly test the installation

@@ -1,0 +1,21 @@
+---
+# Routinary playbook, needs further completion
+
+- hosts: all
+  become: true
+  pre_tasks: # Starting out with packages up to date
+
+  # This avoids the need of upadting the cache before every other task
+  - name: update repo cache (CentOs)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "CentOs"
+
+  - name: update repo cache (Ubuntu)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
