@@ -1,0 +1,56 @@
+---
+# Configure firewalld 
+
+# FIRST, run this to ensure propper use:
+# `ansible-galaxy collection install ansible.posix`
+
+- name: ensure its installation (firewalld)
+  tags: 
+    - start
+    - firewalld
+  package:
+    name: firewalld
+    state: present
+
+- name: ensure it's running and enabled (firewalld)
+  tags: 
+    - start
+    - firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: ensure the presence of the target zone (firewalld)
+  tags: 
+    - start
+    - firewalld
+  ansible.posix.firewalld:
+    zone: "{{ target_zone }}"
+    state: present
+    permanent: true
+  notify: reload_firewalld
+
+# FROM HERE, it's the configuration itself
+- name: change the zone of the ssh service
+  tags: 
+    - firewalld
+  ansible.posix.firewalld:
+    zone: "{{ target_zone }}"
+    service: ssh
+    state: enabled
+    permanent: true
+
+- name: change the zone of eth0
+  tags: 
+    - firewalld
+    - here
+  ansible.posix.firewalld:
+    zone: "{{ target_zone }}" 
+    interface: eth0
+    permanent: true
+    state: enabled
+  notify: reload_firewalld
+
+# Zones are specially useful if the server changes its location 
+# (if it runs in a RaspBerryPi, ...)   

@@ -1,0 +1,16 @@
+---
+# Configure SSH 
+
+
+# The 'blockinfile' module offers a marker option, 
+# but I considered it unnecessarily complex for this situation
+# so I marked in the line itself
+- name: ensure 'LogLevel INFO' on the remote host - ssh
+  tags: 
+    - bootstrap
+    - here
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?LogLevel'
+    line: LogLevel INFO # Update by Ansible
+    state: present

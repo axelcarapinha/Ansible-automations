@@ -1,21 +1,28 @@
 ---
-# Routinary playbook, needs further completion
 
 - hosts: all
   become: true
-  pre_tasks: # Starting out with packages up to date
+  pre_tasks: 
 
-  # This avoids the need of upadting the cache before every other task
-  - name: update repo cache (CentOs)
+  # This avoids the need of udpating the cache before every other task
+  - name: install updates (CentOS)
     tags: always
-    dnf:
+    yum:
       update_only: yes
       update_cache: yes
-    when: ansible_distribution == "CentOs"
+    changed_when: false # does NOT consider this a change, for a cleaner output
+    when: ansible_distribution == "CentOS"
 
-  - name: update repo cache (Ubuntu)
+  - name: install updates (Ubuntu) # in case I end up using Ubuntu servers
     tags: always
     apt:
       upgrade: dist
       update_cache: yes
+    changed_when: false
     when: ansible_distribution == "Ubuntu"
+
+
+- hosts: all
+  become: true
+  roles: 
+    - common

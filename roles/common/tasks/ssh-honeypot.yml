@@ -1,0 +1,104 @@
+---
+# Install, configure and start endlessh 
+#! Tested on CentOS (version 7), NOT on Ubuntu
+
+- name: install pre-requisites - endlessh (CentOS)
+  tags: 
+    - always
+    - centos
+  yum:
+    name: 
+      - gcc
+      - git
+      - glibc-devel
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "CentOS"
+
+- name: install pre-requisites - endlessh (Ubuntu)
+  tags: 
+    - always
+    - ubuntu
+  apt:
+    name: 
+      - libc6-dev
+      - gcc
+      - git
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: clone repo - endlessh 
+  tags: 
+    - endlessh
+  git:
+    repo: https://github.com/skeeto/endlessh
+    dest: /tmp/endlessh
+    version: HEAD
+
+- name: compile - endlessh 
+  tags: 
+    - endlessh
+  community.general.make:
+    chdir: /tmp/endlessh
+    # Ansible automatically changes to the default directory after this
+
+#TODO consider mkdir directory and removing the bin file   
+#TODO error, I guess it considers the file as a folder...
+# - name: move the binnary to a common folder - endlessh 
+#   tags: 
+#     - endlessh
+#   ansible.builtin.copy:
+#     remote_src: yes # the file is on the managed (remote) node
+#     src: /tmp/endlessh/endlessh
+#     dest: /usr/local/bin/
+#     mode: '0755' # this permissions are consistent in this playbook
+#     owner: root
+#     group: root
+
+- name: move the binnary to a common folder - endlessh 
+  tags: 
+    - endlessh
+  shell: mv -f /tmp/endlessh/endlessh /usr/local/bin/endlessh
+
+- name: copy service file to systemd - endlessh
+  tags: 
+    - endlessh
+  ansible.builtin.copy:
+    remote_src: yes
+    src: /tmp/endlessh/util/endlessh.service
+    dest: /etc/systemd/system/
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: enable the service - endlessh
+  systemd:
+    name: endlessh
+    enabled: yes
+
+- name: create config directory - endlessh 
+  tags:
+    - endlessh
+  file:
+    path: /etc/endlessh
+    state: directory
+    mode: '0755' 
+    owner: root
+    group: root
+
+#TODO change the port
+- name: copy and write the config file - endlessh
+  tags:
+    - endlessh
+  copy:
+    dest: /etc/endlessh/config
+    content: | # facilitate further modifications
+      Port 2201 
+
+- name: start - endlessh
+  systemd:
+    name: endlessh
+    state: started
+
+# Consider running `netstat -utlpn | grep endlessh` to thoroughly test the installation

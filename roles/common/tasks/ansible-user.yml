@@ -1,0 +1,23 @@
+---
+# Define the user that Ansible will use
+
+- name: create ansible user (hermes)
+  tags: always
+  user:
+    name: hermes
+    groups: root
+
+- name: add ssh public key for the ansible user (hermes)
+  tags: always
+  authorized_key:
+    user: hermes
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKjEtWmm5F6fCRsdGWDM8ZQP51OYj07zLO7XGqZBLyJV ansible"
+
+- name: add sudoers file for the ansible user (hermes)
+  tags: always
+  copy:
+    src: sudoer_hermes
+    dest: /etc/sudoers.d/hermes
+    owner: root
+    group: root
+    mode: 0440

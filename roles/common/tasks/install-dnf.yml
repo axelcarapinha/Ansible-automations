@@ -1,0 +1,43 @@
+#! UNTESTED
+
+# dnf package manager is already default in version 8 (and above) of CentOS,
+# so this installation was NOT done in CentOS version 7 (the previous Ansible play)
+
+- name: install pre-requisites for dnf (CentOS)
+  tags: 
+    - dnf
+    - python
+    - centos
+  yum:
+    name:
+      - python3
+      - python3-dnf
+    state: present
+  when: ansible_distribution == "CentOS" and ansible_distribution_version|int >= 8
+
+- name: install dnf (CentOS)
+  tags: 
+    - dnf
+    - python
+    - centos
+  pip:
+    name: dnf # Dandified Yum
+  when: ansible_distribution == "CentOS" and ansible_distribution_version|int >= 8
+
+- name: set Python3 as the Python interpreter (CentOS)
+  tags: 
+    - dnf
+    - python
+    - centos
+  set_fact:
+    ansible_python_interpreter: /usr/bin/python3
+  when: ansible_distribution == "CentOS" and ansible_distribution_version|int >= 8
+
+- name: enable EPEL repo (CentOS)
+  tags: 
+    - epel
+    - centos
+  yum:
+    name: epel-release
+    state: present
+  when: ansible_distribution == "CentOS" and ansible_distribution_version|int >= 8

@@ -1,0 +1,33 @@
+---
+# Install basic packages
+
+- name: install basic packages (CentOS) # my common general needs
+  tags: start
+  package:
+    name:
+      - bash-completion
+      - bind-utils
+      - curl
+      - epel-release
+      - fail2ban 
+      - firewalld
+      - gcc
+      - git
+      - lsof
+      - nano
+      - net-tools
+      - nmap
+      - python3
+      - rsync
+      - sysstat
+      - tar
+      - tcpdump
+      - telnet
+      - tmux
+      - tree
+      - unzip
+      - vim
+      - wget
+      - yum-utils
+    state: latest
+    update_cache: yes
