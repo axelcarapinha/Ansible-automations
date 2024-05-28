@@ -62,7 +62,7 @@ ssh-copy-id -i path/to/key username@server_ip_or_hostname
 sudo nano ~/.ssh/authorized_keys
 # paste the key mannualy in some line
 ```
-Keep the private key safe on the host machine!
+Please, keep the private key safe on the host machine!
 
 6. Edit the path to the Ansible keys:
 ```sh
@@ -75,8 +75,9 @@ nano roles/common/tasks/config_ansible-user.yml
 7. Choose what to use, run and enjoy! :)
 ```sh
 nano roles/common/tasks/main.yml # Commented taskbooks will NOT be used (OPTIONAL)
-ansible-playbook site.yml
+ansible-playbook -u username_from_usual_ssh site.yml # NOT the Ansible user, for now
 ```
+_Sidenote_: when the _hermes_ user is defined on the target machine, you can only use `ansible-playbook site.yml`
 
 ## Folder Structure
 ```sh
