@@ -54,7 +54,7 @@ nano ansible.cfg
 # Public key
 nano roles/common/tasks/config_ansible-user.yml
 ```
-4. RUN
+4. Final preparations and RUN
 ```sh
 nano roles/common/tasks/main.yml # Commented taskbooks will NOT be used (OPTIONAL)
 ansible-playbook site.yml
