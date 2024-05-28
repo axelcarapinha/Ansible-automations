@@ -9,7 +9,6 @@
       - bind-utils
       - curl
       - epel-release
-      - fail2ban 
       - firewalld
       - gcc
       - git
