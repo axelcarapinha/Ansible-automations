@@ -80,6 +80,10 @@ _Sidenote_: after the first run, you only need `ansible-playbook site.yml`
 
 ## Folder Structure
 ```sh
+cd roles/common/tasks # most interesting part
+```
+
+```sh
 .
 ├── ansible.cfg
 ├── inventory
