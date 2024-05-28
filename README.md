@@ -1,5 +1,5 @@
 # Ansible-server-automation
-Ansible automations for a fresh configuration on a CentOS server.
+Ansible automations for a quick configuration and maintenance of a CentOS server.
 
 <!-- TABLE OF CONTENTS -->
 <details>
