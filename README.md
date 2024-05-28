@@ -53,7 +53,7 @@ git clone https://github.com/axelcarapinha/Ansible-automations.git && cd Ansible
 cd ~/.ssh
 ssh-keygen -t ed25519 -C 'ansible'
 ```
-5. Place that public keys on the target nodes:
+5. Place the public key on the target nodes:
 ```
 # Option 1 (recommended)
 ssh-copy-id -i path/to/key username@server_ip_or_hostname
@@ -62,6 +62,8 @@ ssh-copy-id -i path/to/key username@server_ip_or_hostname
 sudo nano ~/.ssh/authorized_keys
 # paste the key mannualy in some line
 ```
+Keep the private key safe on the host machine!
+
 6. Edit the path to the Ansible keys:
 ```sh
 # PRIVATE key path
