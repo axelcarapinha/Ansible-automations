@@ -39,7 +39,6 @@ Want to test yourself the power of Infrastructure as Code? Keep reading! 🚀
 - Linux server (CentOS, sometimes Ubuntu is supported too)
 - <a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> 
 - SSH client (OpenSSH was the used one, on the target and host machines)
-- SSH connection to the servers
   
 ### How to run 
 1. Get the playbooks and taskbooks
