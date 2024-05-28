@@ -38,15 +38,31 @@ Want to test yourself the power of Infrastructure as Code? Keep reading! 🚀
 ### Pre-requisites
 - Linux server (CentOS, sometimes Ubuntu is supported too)
 - <a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a> 
-- SSH client (OpenSSH was the used one)
+- SSH client (OpenSSH was the used one, on the target and host machines)
+- SSH connection to the servers
   
 ### How to run 
 1. Get the playbooks and taskbooks
 ```zsh
 git clone https://github.com/axelcarapinha/Ansible-automations.git && cd Ansible-automations
 ```
-2. Place the target IP addresses (_inventory_ file)
-3. Edit the path to the Ansible keys:
+2. Define the target hostnames / IP addresses  (_inventory_ file)
+3. Establish an SSH connection from the host machine to the servers
+4. Create Ansible's keys
+```sh
+cd ~/.ssh
+ssh-keygen -t ed25519 -C 'ansible'
+```
+5. Place that public keys on the target nodes:
+```
+# Option 1 (recommended)
+ssh-copy-id -i path/to/key username@server_ip_or_hostname
+
+# Option 2 
+sudo nano ~/.ssh/authorized_keys
+# paste the key mannualy in some line
+```
+6. Edit the path to the Ansible keys:
 ```sh
 # PRIVATE key path
 nano ansible.cfg
@@ -54,7 +70,7 @@ nano ansible.cfg
 # Public key
 nano roles/common/tasks/config_ansible-user.yml
 ```
-4. Final preparations and RUN
+7. Choose what to use, run and enjoy! :)
 ```sh
 nano roles/common/tasks/main.yml # Commented taskbooks will NOT be used (OPTIONAL)
 ansible-playbook site.yml
