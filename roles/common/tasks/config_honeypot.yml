@@ -6,7 +6,7 @@
   tags: 
     - always
     - centos
-  yum:
+  ansible.builtin.yum:
     name: 
       - gcc
       - git
@@ -19,7 +19,7 @@
   tags: 
     - always
     - ubuntu
-  apt:
+  ansible.builtin.apt:
     name: 
       - libc6-dev
       - gcc
@@ -31,7 +31,7 @@
 - name: clone repo - endlessh 
   tags: 
     - endlessh
-  git:
+  ansible.builtin.git:
     repo: https://github.com/skeeto/endlessh
     dest: /tmp/endlessh
     version: HEAD
@@ -44,7 +44,6 @@
     # Ansible automatically changes to the default directory after this
 
 #TODO consider mkdir directory and removing the bin file   
-#TODO error, I guess it considers the file as a folder...
 # - name: move the binnary to a common folder - endlessh 
 #   tags: 
 #     - endlessh
@@ -56,10 +55,11 @@
 #     owner: root
 #     group: root
 
+#TODO error, I guess it considers the file as a folder...
 - name: move the binnary to a common folder - endlessh 
   tags: 
     - endlessh
-  shell: mv -f /tmp/endlessh/endlessh /usr/local/bin/endlessh
+  ansible.builtin.shell: mv -f /tmp/endlessh/endlessh /usr/local/bin/endlessh
 
 - name: copy service file to systemd - endlessh
   tags: 
@@ -73,31 +73,33 @@
     group: root
 
 - name: enable the service - endlessh
-  systemd:
+  ansible.builtin.systemd:
     name: endlessh
     enabled: yes
 
 - name: create config directory - endlessh 
   tags:
     - endlessh
-  file:
+  ansible.builtin.file:
     path: /etc/endlessh
     state: directory
     mode: '0755' 
     owner: root
     group: root
 
-#TODO change the port
+# Recommended approach:
+  # (1) changing default SSH port on the target node (server(s))
+  # (2) choose port 22 here
 - name: copy and write the config file - endlessh
   tags:
     - endlessh
-  copy:
+  ansible.builtin.copy:
     dest: /etc/endlessh/config
     content: | # facilitate further modifications
       Port 2201 
 
 - name: start - endlessh
-  systemd:
+  ansible.builtin.systemd:
     name: endlessh
     state: started
 

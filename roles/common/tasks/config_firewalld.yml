@@ -1,14 +1,14 @@
 ---
 # Configure firewalld 
 
-# FIRST, run this to ensure propper use:
+# FIRST, run this FROM THE HOST COMPUTER to ensure propper use:
 # `ansible-galaxy collection install ansible.posix`
 
 - name: ensure its installation (firewalld)
   tags: 
     - start
     - firewalld
-  package:
+  ansible.builtin.package:
     name: firewalld
     state: present
 
@@ -16,7 +16,7 @@
   tags: 
     - start
     - firewalld
-  service:
+  ansible.builtin.service:
     name: firewalld
     state: started
     enabled: yes
@@ -26,7 +26,7 @@
     - start
     - firewalld
   ansible.posix.firewalld:
-    zone: "{{ target_zone }}"
+    zone: "{{ common_target_zone }}"
     state: present
     permanent: true
   notify: reload_firewalld
@@ -36,20 +36,20 @@
   tags: 
     - firewalld
   ansible.posix.firewalld:
-    zone: "{{ target_zone }}"
+    zone: "{{ common_target_zone }}"
     service: ssh
     state: enabled
     permanent: true
 
-- name: change the zone of eth0
+#! Works flawlessly for interfaces NOT already attached to a zone
+- name: change the zone of the target interface 
   tags: 
     - firewalld
-    - here
   ansible.posix.firewalld:
-    zone: "{{ target_zone }}" 
+    zone: "{{ common_target_zone }}" 
     interface: eth0
-    permanent: true
     state: enabled
+    permanent: true
   notify: reload_firewalld
 
 # Zones are specially useful if the server changes its location 

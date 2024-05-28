@@ -1,3 +1,4 @@
+# Install dnf package manager (CentOS 8 or above)
 #! UNTESTED
 
 # dnf package manager is already default in version 8 (and above) of CentOS,
@@ -8,7 +9,7 @@
     - dnf
     - python
     - centos
-  yum:
+  ansible.builtin.yum:
     name:
       - python3
       - python3-dnf
@@ -20,7 +21,7 @@
     - dnf
     - python
     - centos
-  pip:
+  ansible.builtin.pip:
     name: dnf # Dandified Yum
   when: ansible_distribution == "CentOS" and ansible_distribution_version|int >= 8
 
@@ -29,7 +30,7 @@
     - dnf
     - python
     - centos
-  set_fact:
+  ansible.builtin.set_fact:
     ansible_python_interpreter: /usr/bin/python3
   when: ansible_distribution == "CentOS" and ansible_distribution_version|int >= 8
 
@@ -37,7 +38,7 @@
   tags: 
     - epel
     - centos
-  yum:
+  ansible.builtin.yum:
     name: epel-release
     state: present
   when: ansible_distribution == "CentOS" and ansible_distribution_version|int >= 8

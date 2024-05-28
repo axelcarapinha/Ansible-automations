@@ -24,5 +24,7 @@
 
 - hosts: all
   become: true
+  vars_files:
+    - roles/common/vars/vars.yml
   roles: 
     - common

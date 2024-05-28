@@ -7,7 +7,7 @@
   tags: 
     - always
     - docker
-  yum:
+  ansible.builtin.yum:
     name:
       - docker
       - docker-client
@@ -24,7 +24,7 @@
   tags: 
     - always
     - docker
-  yum:
+  ansible.builtin.yum:
     name: yum-utils 
     state: present
   when: ansible_distribution == "CentOS"
@@ -33,7 +33,7 @@
   tags: 
     - always
     - docker
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: docker-ce
     description: Docker CE Stable - $basearch # basearch avoids specifying the architectures
     baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
@@ -69,7 +69,7 @@
   tags: 
     - always
     - docker
-  yum:
+  ansible.builtin.yum:
     name:
       - docker-ce
       - docker-ce-cli
@@ -83,7 +83,7 @@
   tags: 
     - always
     - docker
-  service:
+  ansible.builtin.service:
     name: docker
     state: started
     enabled: yes

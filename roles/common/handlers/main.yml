@@ -1,11 +1,9 @@
-- hosts: all
-  become: true
-  vars:
-    target_zone: "target_zone"
-  handlers:
-    # A need stated in the firewalld documentation
-    - name: reload_firewalld
-      ansible.builtin.service:
-        name: firewalld
-        state: reloaded
-  tasks:
+---
+
+# Ansible documentation:
+# "This also means that you will have to reload firewalld 
+# after adding a zone that you wish to perform immediate actions on"
+- name: reload_firewalld
+  ansible.builtin.service:
+    name: firewalld
+    state: reloaded

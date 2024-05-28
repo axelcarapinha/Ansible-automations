@@ -1,10 +1,10 @@
 ---
 
 # Basics
-# - import_tasks: install_common.yml      # commonly needed packages
-# - import_tasks: config_ansible-user.yml # configure 'hermes', the Ansible user
-# - import_tasks: install_dnf.yml         # in case of CentOS (versions 8 and above)
-# - import_tasks: config_ssh.yml
+- import_tasks: install_common.yml      # commonly needed packages
+- import_tasks: config_ansible-user.yml # configure 'hermes', the Ansible user
+- import_tasks: install_dnf.yml         # in case of CentOS (versions 8 and above)
+- import_tasks: config_ssh.yml
 
 # Additional details
 - import_tasks: install_docker-ce.yml   

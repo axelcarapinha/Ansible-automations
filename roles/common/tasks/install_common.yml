@@ -3,7 +3,7 @@
 
 - name: install basic packages (CentOS) # my common general needs
   tags: start
-  package:
+  ansible.builtin.package:
     name:
       - bash-completion
       - bind-utils

@@ -1,0 +1,4 @@
+---
+# Used naming convention: rolename_variable-name 
+
+common_target_zone: "target_zone" # firewalld zone
