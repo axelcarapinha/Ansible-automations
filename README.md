@@ -77,7 +77,7 @@ nano roles/common/tasks/config_ansible-user.yml
 nano roles/common/tasks/main.yml # Commented taskbooks will NOT be used (OPTIONAL)
 ansible-playbook -u username_from_usual_ssh site.yml # NOT the Ansible user, for now
 ```
-_Sidenote_: when the _hermes_ user is defined on the target machine, you can only use `ansible-playbook site.yml`
+_Sidenote_: after the first run, you only need `ansible-playbook site.yml`
 
 ## Folder Structure
 ```sh
