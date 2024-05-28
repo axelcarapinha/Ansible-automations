@@ -9,9 +9,6 @@ Ansible automations for a quick configuration and maintenance of a CentOS server
       <a href="#about-the-project">About The Project</a>
     </li>
     <li>
-      <a href="#use-cases">Use cases</a>
-    </li>
-    <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#Pre-requisites">Pre-requisites</a></li>
@@ -26,16 +23,14 @@ Ansible automations for a quick configuration and maintenance of a CentOS server
 
 ## About the project
 Ansible playbooks and taskbooks for a CentOS server configuration and maintenance.
-Feel free to customize to your needs!
-
-## Use cases
 - In a ⚡breeze⚡, you can give your server:
     - SSH honeypot 
     - Docker-CE
     - Firewall basic configuration
     - SSH settings configuration
     - Unix user for Ansible
-  
+
+Feel free to customize to your needs!
 Want to test yourself the power of Infrastructure as Code? Keep reading! 🚀
 
 
