@@ -64,6 +64,7 @@ ansible-playbook site.yml
 ├── ansible.cfg
 ├── inventory
 ├── README.md
+├── results.png
 ├── roles
 │   ├── 00_folder-template
 │   │   ├── defaults
@@ -95,7 +96,7 @@ ansible-playbook site.yml
 │       │   ├── install_docker-ce.yml
 │       │   └── main.yml
 │       └── vars
-│           └── main.yml
+│           └── vars.yml
 └── site.yml
 ```
 
@@ -105,18 +106,18 @@ ansible-playbook site.yml
 ## What I learned until now!
 Had fun knowing more about:
 - Ansible
- - playbooks
- - roles
- - taskbooks
- - tags
- - good Ansible practices
- - Ansible loops
- - difference between _import_ and _include_
+  - playbooks
+  - roles
+  - taskbooks
+  - tags
+  - good Ansible practices
+  - Ansible loops
+  - difference between _import_ and _include_
 - Advantages of Infrastructure as Code
- - eased, consistent and predictable server configuration
- - unnified approach to cloud environments
- - eased maintenance and version control (less information security threats)
- - managing settings of network devices (routers, in this case)
+  - eased, consistent and predictable server configuration
+  - unnified approach to cloud environments
+  - eased maintenance and version control (less information security threats)
+  - managing settings of network devices (routers, in this case)
 - Information Security
   - (simple) honeypots 
   - iptables, nftables, firewalld and ufw (differences)
