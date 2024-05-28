@@ -48,13 +48,13 @@ git clone https://github.com/axelcarapinha/Ansible-automations.git && cd Ansible
 ```
 2. Define the target hostnames / IP addresses  (_inventory_ file)
 3. Establish an SSH connection from the host machine to the servers
-4. Create Ansible's keys
+4. Create Ansible's keys:
 ```sh
 cd ~/.ssh
 ssh-keygen -t ed25519 -C 'ansible'
 ```
 5. Place the public key on the target nodes:
-```
+```sh
 # Option 1 (recommended)
 ssh-copy-id -i path/to/key username@server_ip_or_hostname
 
