@@ -1,5 +1,5 @@
 # Ansible-server-automation
-Ansible playbooks and taskbooks for a fresh configuration on a CentOS server.
+Ansible automations for a fresh configuration on a CentOS server.
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -25,7 +25,7 @@ Ansible playbooks and taskbooks for a fresh configuration on a CentOS server.
 </details>
 
 ## About the project
-Ansible automations for a CentOS server configuration and maintenance.
+Ansible playbooks and taskbooks for a CentOS server configuration and maintenance.
 Feel free to customize to your needs!
 
 ## Use cases
@@ -35,6 +35,7 @@ Feel free to customize to your needs!
     - Firewall basic configuration
     - SSH settings configuration
     - Unix user for Ansible
+  
 Want to test yourself the power of Infrastructure as Code? Keep reading! 🚀
 
 
