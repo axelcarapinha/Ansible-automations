@@ -30,7 +30,7 @@ Ansible playbooks and taskbooks for a CentOS server configuration and maintenanc
     - SSH settings configuration
     - Unix user for Ansible
 
-Feel free to customize to your needs!
+Feel free to customize to your needs, there's a folder template too.
 Want to test yourself the power of Infrastructure as Code? Keep reading! 🚀
 
 
@@ -86,37 +86,39 @@ _Sidenote_: after the first run, you only need `ansible-playbook site.yml`
 ├── README.md
 ├── results.png
 ├── roles
-│   ├── 00_folder-template
-│   │   ├── defaults
-│   │   ├── files
-│   │   ├── handlers
-│   │   ├── meta
-│   │   ├── tasks
-│   │   │   └── main.yml
-│   │   ├── templates
-│   │   └── vars
-│   │       ├── defaults
-│   │       ├── files
-│   │       ├── handlers
-│   │       ├── meta
-│   │       ├── tasks
-│   │       └── templates
-│   └── common
-│       ├── files
-│       │   └── sudoer_hermes
-│       ├── handlers
-│       │   └── main.yml
-│       ├── tasks
-│       │   ├── config_ansible-user.yml
-│       │   ├── config_firewalld.yml
-│       │   ├── config_honeypot.yml
-│       │   ├── config_ssh.yml
-│       │   ├── install_common.yml
-│       │   ├── install_dnf.yml
-│       │   ├── install_docker-ce.yml
-│       │   └── main.yml
-│       └── vars
-│           └── vars.yml
+│   ├── 00_template_role
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   ├── files
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── meta
+│   │   │   └── main.yml
+│   │   ├── README.md
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   ├── tests
+│   │   │   ├── inventory
+│   │   │   └── test.yml
+│   │   └── vars
+│   │       └── main.yml
+│   └── common
+│       ├── files
+│       │   └── sudoer_hermes
+│       ├── handlers
+│       │   └── main.yml
+│       ├── tasks
+│       │   ├── config_ansible-user.yml
+│       │   ├── config_firewalld.yml
+│       │   ├── config_honeypot.yml
+│       │   ├── config_ssh.yml
+│       │   ├── install_common.yml
+│       │   ├── install_dnf.yml
+│       │   ├── install_docker-ce.yml
+│       │   └── main.yml
+│       └── vars
+│           └── vars.yml
 └── site.yml
 ```
 
