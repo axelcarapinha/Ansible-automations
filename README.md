@@ -46,7 +46,14 @@ Want to test yourself the power of Infrastructure as Code? Keep reading! 🚀
 git clone https://github.com/axelcarapinha/Ansible-automations.git && cd Ansible-automations
 ```
 2. Place the target IP addresses (_inventory_ file)
-3. Edit the path to the Ansible keys: private key (_ansible.cfg_ file) and public key (*config_ansible-user.yml*).
+3. Edit the path to the Ansible keys:
+```sh
+# PRIVATE key path
+nano ansible.cfg
+
+# Public key
+nano roles/common/tasks/config_ansible-user.yml
+```
 4. RUN
 ```sh
 nano roles/common/tasks/main.yml # Commented taskbooks will NOT be used (OPTIONAL)
