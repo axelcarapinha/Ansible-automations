@@ -123,4 +123,4 @@ Had fun knowing more about:
   - iptables, nftables, firewalld and ufw (differences)
   - firewalld (using) and its "zones"
 
-However, an interesting lesson I learned: code abstractions can be a double-edged sword, due to the absence of the underlying functions that may lead to a misuse of the final product (Ansible, in this case).
+However, an interesting lesson I learned: code abstractions can be a double-edged sword, due to the absence of knowledge about the underlying functions that may lead to a misuse of the final product (Ansible, in this case). Nothing that a deeper dive does not solve, anyways!
