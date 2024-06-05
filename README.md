@@ -24,7 +24,7 @@ Ansible automations for a quick configuration and maintenance of a CentOS server
 ## About the project
 Ansible playbooks and taskbooks for a CentOS server configuration and maintenance.
 - In a ⚡breeze⚡, you can give your server:
-    - SSH honeypot 
+    - SSH tarpit
     - Docker-CE
     - Firewall basic configuration
     - SSH settings configuration
@@ -115,7 +115,7 @@ cd roles/common/tasks # most interesting part
 │       ├── tasks
 │       │   ├── config_ansible-user.yml
 │       │   ├── config_firewalld.yml
-│       │   ├── config_honeypot.yml
+│       │   ├── config_ssh-tarpit.yml
 │       │   ├── config_ssh.yml
 │       │   ├── install_common.yml
 │       │   ├── install_dnf.yml

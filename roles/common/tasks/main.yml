@@ -9,4 +9,4 @@
 # Additional details
 - import_tasks: install_docker-ce.yml   
 - import_tasks: config_firewalld.yml    # creating a zone with custom rules
-- import_tasks: config_honeypot.yml     # ssh simple "honeypot" (endlessh)
+- import_tasks: config_ssh-tarpit.yml     # ssh simple "honeypot" (endlessh)
